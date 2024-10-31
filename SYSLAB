@@ -1,0 +1,65 @@
+using System;
+using System.Globalization;
+using System.IO;
+
+internal class Program
+{
+    public static void Main(string[] args)
+    {
+        int minimum = 0;
+        int totalSum = 0;
+        args = File.ReadAllLines("C:\\Users\\Azerty\\Desktop\\Zadacha_dannye.txt");
+        int count = 0;
+        int[] total = new int[count];
+        foreach (var line in args)
+        {
+            count++;
+            string[] parts = line.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            var numbers = Array.ConvertAll(parts, int.Parse);
+            int max = 0;
+            int min = 0;
+            foreach (var num in numbers)
+            {
+                if (num > max)
+                {
+                    min = max;
+                    max = num;
+
+                }
+            }
+            totalSum += max;
+        }
+        if (totalSum % 3 == 2)
+        {
+            foreach (var min1 in total)
+            {
+                total[count] = min1;
+                if(min1< minimum)
+                {
+                    minimum = min1;
+                }
+                
+            }
+            totalSum = totalSum - minimum;
+        }
+        if (totalSum % 3 == 1)
+        {
+            foreach (var min1 in total)
+            {
+                total[count] = min1;
+                if (min1 < minimum)
+                {
+                    minimum = min1;
+                }
+
+            }
+            totalSum = totalSum - minimum;
+        }
+        if(totalSum % 3 == 0)
+        {
+            Console.WriteLine("Итоговая сумма: " + totalSum);
+        }
+        Console.WriteLine("Итоговое количество строк: " + count);
+
+    }
+}ЫН
